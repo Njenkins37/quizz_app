@@ -43,6 +43,10 @@ class QuizInterface:
             self.canvas.itemconfig(self.quiz_text, text=q_text)
         else:
             self.canvas.itemconfig(self.quiz_text, text=F'Final Score: {self.quiz.score}/10')
+            self.right_btn.config(state='disabled')
+            self.wrong_btn.config(state='disabled')
+
+
 
     def false_click(self):
         is_right = self.quiz.check_answer('False')
