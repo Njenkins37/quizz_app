@@ -37,8 +37,12 @@ class QuizInterface:
         self.window.mainloop()
 
     def get_next_question(self):
-        q_text = self.quiz.next_question()
-        self.canvas.itemconfig(self.quiz_text, text=q_text)
+        if self.quiz.still_has_questions():
+            self.label.config(text=f'Score: {self.quiz.score}')
+            q_text = self.quiz.next_question()
+            self.canvas.itemconfig(self.quiz_text, text=q_text)
+        else:
+            self.canvas.itemconfig(self.quiz_text, text=F'Final Score: {self.quiz.score}/10')
 
     def false_click(self):
         is_right = self.quiz.check_answer('False')
